@@ -1,0 +1,64 @@
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
+
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
+
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
+
+! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
+
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
+
+! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
+
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
+
+urxvt*termName:rxvt-unicode-256color
+urxvt.cursorBlink: true
+urxvt*scrollTtyOutput: false
+urxvt*scrollTtyKeypress: true
+urxvt*saveLines: 10000
+urxvt*foreground: white
+urxvt*background: black
+
+! urxvt*font: xft:Inconsolata:pixelsize=16
+! urxvt*boldFont: xft:Inconsolata:bold:pixelsize=16
+urxvt*font: xft:Droid\ Sans\ Mono\ for\ Powerline:size=16
+
+urxvt*scrollBar: false
+urxvt*scrollBar_right: true
+urxvt*scrollstyle: rxvt
+urxvt*scrollBar_floating: true
+
+xft.autohint: 0
+xft.lcdfilter:  lcddefault
+xft.hintstyle:  hintfull
+xft.hinting: 1
+xft.antialias: 1
+xft.rgba: rgb
+
+urxvt.perl-ext-common:  default,matcher
+urxvt.urlLauncher:      /usr/bin/google-chrome
+urxvt.matcher.button:   2
