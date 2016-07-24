@@ -42,8 +42,8 @@ autoload -U colors && colors
 autoload -Uz vcs_info
 setopt prompt_subst
 
-bindkey '\e[A' history-beginning-search-backward
-bindkey '\e[B' history-beginning-search-forward
+#bindkey '\e[A' history-beginning-search-backward
+#bindkey '\e[B' history-beginning-search-forward
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
