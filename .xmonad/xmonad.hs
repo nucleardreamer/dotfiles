@@ -45,6 +45,7 @@ myLayoutHook = commonManagers $
 myManageHook = composeAll
     [ manageHook gnomeConfig
     , isFullscreen --> doFullFloat -- make full-screen windows work
+    , title     =? "float" --> doFloat
     , className =? "Xfce4-notifyd" --> doIgnore
     ]
 
@@ -53,6 +54,7 @@ myStartupHook = do
   spawn "xrdb $HOME/.Xresources"
   spawn "xrandr -s 1920x1080"
   spawn "xscreensaver -nosplash"
+  spawn "unclutter --idle 2"
   spawn "xmobar .xmonad/mobar.conf"
   return ()
 

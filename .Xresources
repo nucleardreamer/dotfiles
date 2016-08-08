@@ -35,14 +35,15 @@
 *.color7:       #707880
 *.color15:      #c5c8c6
 
+xscreensaver.mode: random
+xscreensaver.lock: false
 urxvt*termName:rxvt-unicode-256color
 urxvt.cursorBlink: true
 urxvt*scrollTtyOutput: false
 urxvt*scrollTtyKeypress: true
 urxvt*saveLines: 10000
-urxvt*foreground: white
-urxvt*background: black
 
+urxvt*allow_bold: false
 urxvt*font: xft:Droid Sans Mono:size=16
 
 urxvt*scrollBar: false
@@ -56,6 +57,7 @@ urxvt*scrollBar_floating: true
 !xft.hinting: 1
 xft.antialias: 1
 xft.rgba: rgb
+
 
 urxvt.perl-ext-common:  default,matcher
 urxvt.urlLauncher:      /usr/bin/google-chrome

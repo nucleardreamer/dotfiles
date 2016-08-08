@@ -59,3 +59,6 @@ RPROMPT=''
 
 
 [[ -e ~/.zsh_aliases ]] && source ~/.zsh_aliases
+
+export NVM_DIR="/home/nuclear/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

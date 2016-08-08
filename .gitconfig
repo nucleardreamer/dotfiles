@@ -1,5 +1,5 @@
 [user]
 	name = Flynn Joffray
 	email = nucleardreamer@gmail.com
-[github]
-	user = nucleardreamer
+[push]
+	default = matching

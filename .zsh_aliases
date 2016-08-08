@@ -1,3 +1,9 @@
 #!/bin/zsh
 
-alias off="pm-hibernate"
+#alias 'dcproc=docker ps -a -q | cut -d " " -f 1 | xargs sudo docker rm'
+alias 'dcproc=docker rm $(docker ps -a -q)'
+alias 'dcimages=docker rmi -f $(docker images --filter "dangling=true" -q)'
+alias 'dcvolumes=docker volume rm $(docker volume ls -f "dangling=true" -q)'
+alias 'dclean=dcproc;dcimages;dcvolumes'
+
+alias 'off=pm-hibernate'
