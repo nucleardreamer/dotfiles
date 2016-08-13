@@ -7,3 +7,7 @@ alias 'dcvolumes=docker volume rm $(docker volume ls -f "dangling=true" -q)'
 alias 'dclean=dcproc;dcimages;dcvolumes'
 
 alias 'off=pm-hibernate'
+
+alias 'pico=nano'
+alias 'pbcopy=xsel --clipboard --input'
+alias 'pbpaste=xsel --clipboard --output'

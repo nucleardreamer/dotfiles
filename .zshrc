@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 export EDITOR="nano"
-export BROWSER="google-chrome"
+export BROWSER="google-chrome-stable"
 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
@@ -45,7 +45,7 @@ setopt prompt_subst
 #bindkey '\e[A' history-beginning-search-backward
 #bindkey '\e[B' history-beginning-search-forward
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 if [ $SSH_CLIENT ]; then
     DOMAIN='%F{red}%m'
@@ -62,3 +62,5 @@ RPROMPT=''
 
 export NVM_DIR="/home/nuclear/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+[ -z "$DISPLAY" -a "$(fgconsole)" -eq 1 ] && exec startx

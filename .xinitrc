@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#xrdb -merge .Xresources
+
+#xrandr -s 1920x1080
+
+#unclutter -idle 2.5
+
+#xscreensaver -no-splash &
+
+exec xmonad
+
+#exec startxfce4

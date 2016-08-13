@@ -51,11 +51,11 @@ myManageHook = composeAll
 
 myStartupHook = do
   setDefaultCursor xC_left_ptr
-  spawn "xrdb $HOME/.Xresources"
+  spawn "xrdb -merge -I$HOME $HOME/.Xresources"
   spawn "xrandr -s 1920x1080"
   spawn "xscreensaver -nosplash"
   spawn "unclutter --idle 2"
-  spawn "xmobar .xmonad/mobar.conf"
+  spawn "xmobar $HOME/.xmonad/mobar.conf"
   return ()
 
 myConfig = ewmh defaultConfig

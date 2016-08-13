@@ -37,14 +37,15 @@
 
 xscreensaver.mode: random
 xscreensaver.lock: false
-urxvt*termName:rxvt-unicode-256color
+urxvt*termName:rxvt-unicode
 urxvt.cursorBlink: true
 urxvt*scrollTtyOutput: false
 urxvt*scrollTtyKeypress: true
+urxvt*scrollWithBuffer: true
 urxvt*saveLines: 10000
 
 urxvt*allow_bold: false
-urxvt*font: xft:Droid Sans Mono:size=16
+urxvt*font: xft:DejaVu Sans Mono:size=16
 
 urxvt*scrollBar: false
 urxvt*scrollBar_right: true
@@ -60,5 +61,5 @@ xft.rgba: rgb
 
 
 urxvt.perl-ext-common:  default,matcher
-urxvt.urlLauncher:      /usr/bin/google-chrome
+urxvt.urlLauncher:      /usr/bin/google-chrome-stable
 urxvt.matcher.button:   2
