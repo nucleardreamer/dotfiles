@@ -57,10 +57,19 @@ PROMPT='%B%(!.%F{red}.%F{green})%n@$DOMAIN%F{white}%b:%B%F{blue}%~%f${vcs_info_m
 RPROMPT=''
 
 
-
 [[ -e ~/.zsh_aliases ]] && source ~/.zsh_aliases
 
-export NVM_DIR="/home/nuclear/.nvm"
+[ -z "$DISPLAY" -a "$(fgconsole)" -eq 1 ] && exec startx
+
+
+export NVM_DIR="/home/chronic/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-[ -z "$DISPLAY" -a "$(fgconsole)" -eq 1 ] && exec startx
+# for ssh-agent systemd service
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+if [[ -z $(pidof ssh-agent) ]]; then
+  eval $(/usr/bin/keychain --eval -Q -q --nogui --agents "ssh" id_dsa id_rsa)
+  [[ -z $HOSTNAME ]] && HOSTNAME=$(uname -n)
+  [[ -f $HOME/.keychain/${HOSTNAME}-sh ]] && source $HOME/.keychain/${HOSTNAME}-sh
+fi

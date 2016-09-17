@@ -1,13 +1,20 @@
 #!/bin/zsh
 
-#alias 'dcproc=docker ps -a -q | cut -d " " -f 1 | xargs sudo docker rm'
 alias 'dcproc=docker rm $(docker ps -a -q)'
 alias 'dcimages=docker rmi -f $(docker images --filter "dangling=true" -q)'
 alias 'dcvolumes=docker volume rm $(docker volume ls -f "dangling=true" -q)'
 alias 'dclean=dcproc;dcimages;dcvolumes'
+
+alias 'dcd=docker-compose down'
+alias 'dcu=docker-compose up'
 
 alias 'off=pm-hibernate'
 
 alias 'pico=nano'
 alias 'pbcopy=xsel --clipboard --input'
 alias 'pbpaste=xsel --clipboard --output'
+
+alias 'isomount=mount -o loop -t iso9660'
+
+alias dfimage="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm 
+centurylink/dockerfile-from-image"
