@@ -51,7 +51,7 @@ myManageHook = composeAll
 
 myStartupHook = do
   setDefaultCursor xC_left_ptr
-  spawn "xrdb -merge -I$HOME $HOME/.Xresources"
+  spawn "xrdb $HOME/.Xresources"
   spawn "xrandr -s 1920x1080"
   spawn "xscreensaver -nosplash"
   spawn "unclutter --idle 2"
@@ -74,6 +74,10 @@ myConfig = ewmh defaultConfig
        `additionalKeys`  -- see /usr/include/X11/keysymdef.h
        [
          ((myModMask, xK_grave), toggleWS)
+         --take a screenshot of entire display 
+         , ((myModMask , xK_Print ), spawn "scrot $HOME/last_screenshot.png -d 1")
+         --take a screenshot of focused window 
+         , ((myModMask .|. controlMask, xK_Print ), spawn "scrot $HOME/last_screenshot.png -d 1-u")
        ]
 
 main = xmonad myConfig

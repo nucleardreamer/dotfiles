@@ -8,13 +8,14 @@ alias 'dclean=dcproc;dcimages;dcvolumes'
 alias 'dcd=docker-compose down'
 alias 'dcu=docker-compose up'
 
-alias 'off=pm-hibernate'
+#alias 'off=pm-hibernate'
 
 alias 'pico=nano'
+
 alias 'pbcopy=xsel --clipboard --input'
 alias 'pbpaste=xsel --clipboard --output'
 
 alias 'isomount=mount -o loop -t iso9660'
 
-alias dfimage="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm 
-centurylink/dockerfile-from-image"
+alias 'brighter=xbacklight -inc 10'
+alias 'darker=xbacklight -dec 10'

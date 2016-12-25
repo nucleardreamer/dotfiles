@@ -3,3 +3,5 @@
 	email = nucleardreamer@gmail.com
 [push]
 	default = matching
+[github]
+	user = nucleardreamer

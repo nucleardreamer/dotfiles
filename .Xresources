@@ -45,20 +45,22 @@ urxvt*scrollWithBuffer: true
 urxvt*saveLines: 10000
 
 urxvt*allow_bold: false
-urxvt*font: xft:DejaVu Sans Mono:size=16
+! urxvt*font: xft:DejaVu Sans Mono:size=16,xft:Noto Sans Mono CJK:size=16
+urxvt*font: xft:Inconsolata:pixelsize=16,xft:Noto Sans Mono CJK TC:size=16
+urxvt*boldFont: xft:Inconsolata:bold:pixelsize=16,xft:Noto Mono CJK TC Bold:size=16
 
 urxvt*scrollBar: false
 urxvt*scrollBar_right: true
 urxvt*scrollstyle: rxvt
 urxvt*scrollBar_floating: true
 
-!xft.autohint: 0
-!xft.lcdfilter:  lcddefault
-!xft.hintstyle:  hintfull
-!xft.hinting: 1
-xft.antialias: 1
+xft.dpi: 180
+xft.autohint: true
+xft.lcdfilter:  lcddefault
+xft.hintstyle:  hintfull
+xft.hinting: true
+xft.antialias: true
 xft.rgba: rgb
-
 
 urxvt.perl-ext-common:  default,matcher
 urxvt.urlLauncher:      /usr/bin/google-chrome-stable
