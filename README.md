@@ -4,6 +4,7 @@ alsa-tools
 connman
 dmenu
 git
+libu2f-host
 nmap
 nodm
 openssh
@@ -23,3 +24,4 @@ xorg
 xscreensaver
 zerotier-one
 ```
+

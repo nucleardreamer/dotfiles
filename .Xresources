@@ -45,7 +45,6 @@ urxvt*scrollWithBuffer: true
 urxvt*saveLines: 10000
 
 urxvt*allow_bold: false
-! urxvt*font: xft:DejaVu Sans Mono:size=16,xft:Noto Sans Mono CJK:size=16
 urxvt*font: xft:Inconsolata:pixelsize=16,xft:Noto Sans Mono CJK TC:size=16
 urxvt*boldFont: xft:Inconsolata:bold:pixelsize=16,xft:Noto Mono CJK TC Bold:size=16
 

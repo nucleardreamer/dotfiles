@@ -61,15 +61,16 @@ myStartupHook = do
 -- to self: remember defaultConfig is being depricated
 myConfig = ewmh defaultConfig
        { terminal           = "urxvt"
-       , focusFollowsMouse  = True
        , modMask            = myModMask
        , normalBorderColor  = "dim grey"
        , focusedBorderColor = "firebrick"
-       , layoutHook         = myLayoutHook
+       , focusFollowsMouse  = True
        , manageHook         = myManageHook <+> manageDocks <+> manageSpawn
-       , startupHook        = myStartupHook
+       , layoutHook         = myLayoutHook
+       --  , handleEventHook    = fullscreenEventHook
+       , handleEventHook    = handleEventHook defaultConfig <+> docksEventHook
        , logHook            = dynamicLogString xmobarPP >>= xmonadPropLog
-       , handleEventHook    = fullscreenEventHook
+       , startupHook        = myStartupHook
        , clickJustFocuses   = False
        }
        `additionalKeys`  -- see /usr/include/X11/keysymdef.h
