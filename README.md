@@ -21,6 +21,7 @@ xmobar
 xmonad
 xmonad-contrib
 xorg
+xorg-xfd
 xscreensaver
 zerotier-one
 ```
