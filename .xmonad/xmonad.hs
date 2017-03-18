@@ -52,12 +52,13 @@ myManageHook = composeAll
 myStartupHook = do
   setDefaultCursor xC_left_ptr
   spawn "xrdb $HOME/.Xresources"
-  spawn "xrandr -s 1920x1080"
+  spawn "xrandr -s 2048x1152"
   spawn "xscreensaver -nosplash"
-  spawn "unclutter --idle 2"
+  spawn "unclutter -idle 2"
   spawn "xmobar $HOME/.xmonad/mobar.conf"
   return ()
 
+-- to self: remember defaultConfig is being depricated
 myConfig = ewmh defaultConfig
        { terminal           = "urxvt"
        , focusFollowsMouse  = True
