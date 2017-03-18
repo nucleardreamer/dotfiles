@@ -7,10 +7,10 @@ git
 libu2f-host
 nmap
 nodm
+noto-fonts
 openssh
 rxvt-unicode
 socat
-ttf-terminus
 typora
 unclutter
 volnoti
@@ -23,6 +23,7 @@ xmonad-contrib
 xorg
 xorg-xfd
 xscreensaver
+xterm
 zerotier-one
 ```
 

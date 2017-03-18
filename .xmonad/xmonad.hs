@@ -7,9 +7,13 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.OneBig
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Spacing
 import XMonad.Layout.LayoutHints
+
 import XMonad.Prompt
 import XMonad.Prompt.Input
 import XMonad.Prompt.Window
@@ -36,11 +40,14 @@ myLayoutHook = commonManagers $
            tiled |||
            Full
   where
-     tiled   = Tall nmaster delta ratio
+     tiled1   = Tall nmaster delta ratio
+     mtiled  = Mirror tiled1
+     tiled   = spacingWithEdge 3  $ ResizableTall nmaster delta ratio []
      nmaster = 1
      ratio   = 1/2
      delta   = 4/100
      commonManagers = smartBorders . avoidStruts
+
 
 myManageHook = composeAll
     [ manageHook gnomeConfig
@@ -52,6 +59,7 @@ myManageHook = composeAll
 myStartupHook = do
   setDefaultCursor xC_left_ptr
   spawn "xrdb $HOME/.Xresources"
+  spawn "xsetroot -solid \"#343C4B\""
   spawn "xrandr -s 2048x1152"
   spawn "xscreensaver -nosplash"
   spawn "unclutter -idle 2"
@@ -62,8 +70,8 @@ myStartupHook = do
 myConfig = ewmh defaultConfig
        { terminal           = "urxvt"
        , modMask            = myModMask
-       , normalBorderColor  = "dim grey"
-       , focusedBorderColor = "firebrick"
+       , normalBorderColor  = "#6986A0"
+       , focusedBorderColor = "#C1CAD0"
        , focusFollowsMouse  = True
        , manageHook         = myManageHook <+> manageDocks <+> manageSpawn
        , layoutHook         = myLayoutHook
