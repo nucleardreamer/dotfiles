@@ -1,0 +1,22 @@
+#!/bin/bash -e
+
+ME=$(whoami)
+
+# arch
+
+pacman --noconfirm --needed -Syyu;
+pacman --noconfirm --needed -S git base-devel;
+git clone https://aur.archlinux.org/package-query.git /tmp/package-query;
+cd /tmp/package-query && makepkg -si;
+git clone https://aur.archlinux.org/yaourt.git /tmp/yaourt;
+cd /tmp/yaourt && makepkg -si;
+
+yaourt --noconfirm -S $(cat ./packagelist | xargs);
+
+echo 'KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="users", ATTRS{idVendor}=="2581", ATTRS{idProduct}=="f1d0"' | sudo tee /etc/udev/rules.d/10-security-key.rules;
+
+# nodm
+sed -i "/NODM_USER/c\NODM_USER='$ME'" /etc/nodm.conf
+sed -i "/NODM_XSESSION/c\NODM_XSESSION='/home/$ME/.xinitrc'" /etc/nodm.conf
+
+sudo pacman --noconfirm -Rsn $(pacman -Qqdt);

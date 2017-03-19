@@ -1,29 +1,5 @@
 ### arch packages
 ```
-alsa-tools
-connman
-dmenu
-git
-libu2f-host
-nmap
-nodm
-noto-fonts
-openssh
-rxvt-unicode
-socat
-typora
-unclutter
-volnoti
-xbindkey
-xfce4
-xfce4-goodies
-xmobar
-xmonad
-xmonad-contrib
-xorg
-xorg-xfd
-xscreensaver
-xterm
-zerotier-one
+chmod +x ./install && sudo ./install
 ```
 
