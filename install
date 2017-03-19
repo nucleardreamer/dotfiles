@@ -3,7 +3,6 @@
 ME=$(whoami)
 
 # arch
-
 pacman --noconfirm --needed -Syyu;
 pacman --noconfirm --needed -S git base-devel;
 git clone https://aur.archlinux.org/package-query.git /tmp/package-query;
@@ -13,10 +12,20 @@ cd /tmp/yaourt && makepkg -si;
 
 yaourt --noconfirm -S $(cat ./packagelist | xargs);
 
-echo 'KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="users", ATTRS{idVendor}=="2581", ATTRS{idProduct}=="f1d0"' | sudo tee /etc/udev/rules.d/10-security-key.rules;
+# copy all files
+cp -R rootfs/* /
+
+# fonts
+sed -i '/FONT/d' /etc/vconsole.conf || echo "FONT=Lat2-Terminus16" >> tee -a /etc/vconsole.conf
 
 # nodm
-sed -i "/NODM_USER/c\NODM_USER='$ME'" /etc/nodm.conf
-sed -i "/NODM_XSESSION/c\NODM_XSESSION='/home/$ME/.xinitrc'" /etc/nodm.conf
+if [[ -f /home/chronic/.Xresources ]]
+  sed -i "/NODM_USER/c\NODM_USER='$ME'" /etc/nodm.conf
+  sed -i "/NODM_XSESSION/c\NODM_XSESSION='/home/$ME/.xinitrc'" /etc/nodm.conf
+fi
 
-sudo pacman --noconfirm -Rsn $(pacman -Qqdt);
+# cleanup
+pacman --noconfirm -Rsn $(pacman -Qqdt);
+
+# rebuild image
+mkinitcpio -p linux

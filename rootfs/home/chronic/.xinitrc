@@ -9,6 +9,8 @@ fi
 
 [[ -f /home/chronic/.Xresources ]] && xrdb -merge /home/chronic/.Xresources
 
+xhost +
+
 eval $(ssh-agent)
 
 xinput disable 9 &
