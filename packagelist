@@ -10,6 +10,8 @@ dmenu
 docker
 docker-compose
 git
+go
+go-tools
 google-chrome
 libu2f-host
 nmap
@@ -23,7 +25,7 @@ typora
 unclutter
 unzip
 volnoti
-xbindkey
+xbindkeys
 xfce4
 xfce4-goodies
 xmobar
