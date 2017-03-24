@@ -16,6 +16,7 @@ google-chrome
 libu2f-host
 nmap
 nodm
+nss-mdns
 noto-fonts
 openssh
 rxvt-unicode

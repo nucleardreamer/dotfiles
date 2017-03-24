@@ -22,8 +22,11 @@ rm -rf /home/_TEMP
 # fonts
 sed -i '/FONT/d' /etc/vconsole.conf || echo "FONT=Lat2-Terminus16" >> tee -a /etc/vconsole.conf
 
+# ns switch resolution
+sed -i "/hosts:/c\hosts: files mdns4_minimal [!UNAVAIL=return] dns" /etc/nsswitch.conf
+
 # nodm
-if [[ -f /home/chronic/.Xresources ]]
+if [[ -f /home/$HOME/.Xresources ]]
   sed -i "/NODM_USER/c\NODM_USER='$ME'" /etc/nodm.conf
   sed -i "/NODM_XSESSION/c\NODM_XSESSION='/home/$ME/.xinitrc'" /etc/nodm.conf
 fi
@@ -37,6 +40,9 @@ nvm i 6
 
 # oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# stick in aliases file to .zshrc
+echo "source ~/.zsh_aliases" >> ~/.zshrc
 
 # local scripts
 chmod +x /usr/local/bin/*

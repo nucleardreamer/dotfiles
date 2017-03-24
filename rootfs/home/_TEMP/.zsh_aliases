@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+export TERM="xterm-256color"
+
+export GOPATH=$HOME/go
+export PATH="$PATH:$GOPATH/bin:$HOME/bin"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 alias 'dcproc=docker rm $(docker ps -a -q)'
 alias 'dcimages=docker rmi -f $(docker images --filter "dangling=true" -q)'
 alias 'dcvolumes=docker volume rm $(docker volume ls -f "dangling=true" -q)'
