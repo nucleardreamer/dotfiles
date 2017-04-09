@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+_IFACE='eth1'
+_HOST=$1
+_TARGET=$2
+if [[ $# -eq 3 ]]; then
+  _IFACE=$1
+  _HOST=$2
+  _TARGET=$3
+fi
+
+exec ssh $_HOST sudo tcpdump -U -s0 -w - -i $_IFACE -n host $_TARGET | sudo wireshark -k -i -
