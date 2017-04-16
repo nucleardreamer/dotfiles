@@ -1,15 +1,15 @@
 #!/bin/bash -e
 
 ME=$(whoami)
-
+_HOME=/home/$ME
 # arch
-mkdir -p $HOME/tmp
+mkdir -p $_HOME/tmp
 sudo pacman --noconfirm --needed -Syyu;
 sudo pacman --noconfirm --needed -S git base-devel;
-git clone https://aur.archlinux.org/package-query.git $HOME/tmp/package-query;
-cd $HOME/tmp/package-query && makepkg -si;
-git clone https://aur.archlinux.org/yaourt.git $HOME/tmp/yaourt;
-cd $HOME/tmp/yaourt && makepkg -si;
+git clone https://aur.archlinux.org/package-query.git $_HOME/tmp/package-query;
+cd $_HOME/tmp/package-query && makepkg -si;
+git clone https://aur.archlinux.org/yaourt.git $_HOME/tmp/yaourt;
+cd $_HOME/tmp/yaourt && makepkg -si;
 
 yaourt --noconfirm -S $(cat ./packagelist | xargs);
 
@@ -17,9 +17,9 @@ yaourt --noconfirm -S $(cat ./packagelist | xargs);
 cp -R rootfs/* /
 
 # move home dir files
-sudo mv /home/_TEMP/* $HOME/
+sudo mv /home/_TEMP/* $_HOME/
 sudo rm -rf /home/_TEMP
-sudo chown -R $ME:$ME $HOME/*
+sudo chown -R $ME:$ME $_HOME/*
 
 # fonts
 sudo sed -i '/FONT/d' /etc/vconsole.conf || echo "FONT=Lat2-Terminus16" >> tee -a /etc/vconsole.conf
@@ -28,7 +28,7 @@ sudo sed -i '/FONT/d' /etc/vconsole.conf || echo "FONT=Lat2-Terminus16" >> tee -
 sudo sed -i "/hosts:/c\hosts: files mdns4_minimal [!UNAVAIL=return] dns" /etc/nsswitch.conf
 
 # nodm
-if [[ -f /home/$HOME/.Xresources ]]
+if [[ -f /home/$_HOME/.Xresources ]]
   sudo sed -i "/NODM_USER/c\NODM_USER='$ME'" /etc/nodm.conf
   sudo sed -i "/NODM_XSESSION/c\NODM_XSESSION='/home/$ME/.xinitrc'" /etc/nodm.conf
 fi
@@ -36,7 +36,7 @@ fi
 # node
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$_HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm i 6
 
@@ -44,7 +44,7 @@ nvm i 6
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # stick in aliases file to .zshrc
-echo "source ~/.zsh_aliases" >> $HOME/.zshrc
+echo "source ~/.zsh_aliases" >> $_HOME/.zshrc
 
 # local scripts
 sudo chmod +x /usr/local/bin/*
