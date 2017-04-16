@@ -3,12 +3,13 @@
 ME=$(whoami)
 
 # arch
-pacman --noconfirm --needed -Syyu;
-pacman --noconfirm --needed -S git base-devel;
-git clone https://aur.archlinux.org/package-query.git /tmp/package-query;
-cd /tmp/package-query && makepkg -si;
-git clone https://aur.archlinux.org/yaourt.git /tmp/yaourt;
-cd /tmp/yaourt && makepkg -si;
+mkdir -p $HOME/tmp
+sudo pacman --noconfirm --needed -Syyu;
+sudo pacman --noconfirm --needed -S git base-devel;
+git clone https://aur.archlinux.org/package-query.git $HOME/tmp/package-query;
+cd $HOME/tmp/package-query && makepkg -si;
+git clone https://aur.archlinux.org/yaourt.git $HOME/tmp/yaourt;
+cd $HOME/tmp/yaourt && makepkg -si;
 
 yaourt --noconfirm -S $(cat ./packagelist | xargs);
 
@@ -16,19 +17,20 @@ yaourt --noconfirm -S $(cat ./packagelist | xargs);
 cp -R rootfs/* /
 
 # move home dir files
-mv /home/_TEMP/* /home/$ME/
-rm -rf /home/_TEMP
+sudo mv /home/_TEMP/* $HOME/
+sudo rm -rf /home/_TEMP
+sudo chown -R $ME:$ME $HOME/*
 
 # fonts
-sed -i '/FONT/d' /etc/vconsole.conf || echo "FONT=Lat2-Terminus16" >> tee -a /etc/vconsole.conf
+sudo sed -i '/FONT/d' /etc/vconsole.conf || echo "FONT=Lat2-Terminus16" >> tee -a /etc/vconsole.conf
 
 # ns switch resolution
-sed -i "/hosts:/c\hosts: files mdns4_minimal [!UNAVAIL=return] dns" /etc/nsswitch.conf
+sudo sed -i "/hosts:/c\hosts: files mdns4_minimal [!UNAVAIL=return] dns" /etc/nsswitch.conf
 
 # nodm
 if [[ -f /home/$HOME/.Xresources ]]
-  sed -i "/NODM_USER/c\NODM_USER='$ME'" /etc/nodm.conf
-  sed -i "/NODM_XSESSION/c\NODM_XSESSION='/home/$ME/.xinitrc'" /etc/nodm.conf
+  sudo sed -i "/NODM_USER/c\NODM_USER='$ME'" /etc/nodm.conf
+  sudo sed -i "/NODM_XSESSION/c\NODM_XSESSION='/home/$ME/.xinitrc'" /etc/nodm.conf
 fi
 
 # node
@@ -42,13 +44,13 @@ nvm i 6
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # stick in aliases file to .zshrc
-echo "source ~/.zsh_aliases" >> ~/.zshrc
+echo "source ~/.zsh_aliases" >> $HOME/.zshrc
 
 # local scripts
-chmod +x /usr/local/bin/*
+sudo chmod +x /usr/local/bin/*
 
 # cleanup
-pacman --noconfirm -Rsn $(pacman -Qqdt);
+sudo pacman --noconfirm -Rsn $(pacman -Qqdt);
 
 # rebuild image
-mkinitcpio -p linux
+sudo mkinitcpio -p linux
