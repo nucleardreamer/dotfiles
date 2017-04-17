@@ -17,7 +17,7 @@ yaourt --noconfirm -S $(cat ./packagelist | xargs);
 sudo cp -R rootfs/* /
 
 # move home dir files
-sudo mv /home/_TEMP/* $_HOME/
+sudo mv /home/_TEMP/.* $_HOME/
 sudo rm -rf /home/_TEMP
 sudo chown -R $ME:$ME $_HOME/*
 
