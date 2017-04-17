@@ -14,7 +14,7 @@ cd $_HOME/tmp/yaourt && makepkg -si;
 yaourt --noconfirm -S $(cat ./packagelist | xargs);
 
 # copy all files
-cp -R rootfs/* /
+sudo cp -R rootfs/* /
 
 # move home dir files
 sudo mv /home/_TEMP/* $_HOME/
