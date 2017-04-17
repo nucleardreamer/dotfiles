@@ -7,9 +7,9 @@ mkdir -p $_HOME/tmp
 sudo pacman --noconfirm --needed -Syyu;
 sudo pacman --noconfirm --needed -S git base-devel;
 git clone https://aur.archlinux.org/package-query.git $_HOME/tmp/package-query;
-cd $_HOME/tmp/package-query && makepkg -si;
+cd $_HOME/tmp/package-query && makepkg -si --noconfirm;
 git clone https://aur.archlinux.org/yaourt.git $_HOME/tmp/yaourt;
-cd $_HOME/tmp/yaourt && makepkg -si;
+cd $_HOME/tmp/yaourt && makepkg -si --noconfirm;
 
 yaourt --noconfirm -S $(cat ./packagelist | xargs);
 
@@ -22,35 +22,34 @@ sudo rm -rf /home/_TEMP
 sudo chown -R $ME:$ME $_HOME/*
 
 # fonts
-sudo sed -i '/FONT/d' /etc/vconsole.conf || echo "FONT=Lat2-Terminus16" >> tee -a /etc/vconsole.conf
+sudo sed -i '/FONT/d' /etc/vconsole.conf || echo "FONT=Lat2-Terminus16" >> tee -a /etc/vconsole.conf;
 
 # ns switch resolution
-sudo sed -i "/hosts:/c\hosts: files mdns4_minimal [!UNAVAIL=return] dns" /etc/nsswitch.conf
+sudo sed -i "/hosts:/c\hosts: files mdns4_minimal [!UNAVAIL=return] dns" /etc/nsswitch.conf;
 
 # nodm
-if [[ -f /home/$_HOME/.Xresources ]]
-  sudo sed -i "/NODM_USER/c\NODM_USER='$ME'" /etc/nodm.conf
-  sudo sed -i "/NODM_XSESSION/c\NODM_XSESSION='/home/$ME/.xinitrc'" /etc/nodm.conf
-fi
+sudo sed -i "/NODM_USER/c\NODM_USER='$ME'" /etc/nodm.conf;
+sudo sed -i "/NODM_XSESSION/c\NODM_XSESSION='/home/$ME/.xinitrc'" /etc/nodm.conf;
 
 # node
-
 curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 export NVM_DIR="$_HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm i 6
-
-# oh my zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+nvm i 6;
 
 # stick in aliases file to .zshrc
-echo "source ~/.zsh_aliases" >> $_HOME/.zshrc
+echo "source ~/.zsh_aliases" >> $_HOME/.zshrc;
 
 # local scripts
-sudo chmod +x /usr/local/bin/*
+sudo chmod +x /usr/local/bin/*;
 
 # cleanup
 sudo pacman --noconfirm -Rsn $(pacman -Qqdt);
 
 # rebuild image
-sudo mkinitcpio -p linux
+sudo mkinitcpio -p linux;
+
+# oh my zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
+
+sudo reboot now;
