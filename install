@@ -11,7 +11,19 @@ cd $_HOME/tmp/package-query && makepkg -si --noconfirm;
 git clone https://aur.archlinux.org/yaourt.git $_HOME/tmp/yaourt;
 cd $_HOME/tmp/yaourt && makepkg -si --noconfirm;
 
-yaourt --noconfirm -S $(cat ./packagelist | xargs);
+yaourt --noconfirm -S $(cat packagelist | xargs);
+
+# oh my zsh
+curl -sSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+# node
+curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+export NVM_DIR="$_HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm i 7.4.0;
+
+# docker group
+sudo usermod -aG docker $ME
 
 # copy all files
 sudo cp -R rootfs/* /
@@ -23,7 +35,7 @@ sudo chown -R $ME:$ME $_HOME/*
 
 # fonts
 sudo sed -i '/FONT/d' /etc/vconsole.conf;
-sudo echo "FONT=Lat2-Terminus16" >> tee -a /etc/vconsole.conf;
+sudo echo "FONT=Lat2-Terminus16" >> /etc/vconsole.conf;
 
 # ns switch resolution
 sudo sed -i "/hosts:/c\hosts: files mdns4_minimal [!UNAVAIL=return] dns" /etc/nsswitch.conf;
@@ -32,12 +44,6 @@ sudo sed -i "/hosts:/c\hosts: files mdns4_minimal [!UNAVAIL=return] dns" /etc/ns
 sudo sed -i "/NODM_USER/c\NODM_USER='$ME'" /etc/nodm.conf;
 sudo sed -i "/NODM_XSESSION/c\NODM_XSESSION='/home/$ME/.xinitrc'" /etc/nodm.conf;
 sudo systemctl enable nodm;
-
-# node
-curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-export NVM_DIR="$_HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm i 6;
 
 # local scripts
 sudo chmod +x /usr/local/bin/*;
@@ -56,8 +62,5 @@ sudo mkinitcpio -p linux;
 
 # stick in aliases file to .zshrc
 echo "source ~/.zsh_aliases" >> $_HOME/.zshrc;
-
-# oh my zsh
-curl -sSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 
 sudo reboot now;
