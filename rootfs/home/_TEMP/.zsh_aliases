@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 alias 'dcproc=docker rm $(docker ps -a -q)'
 alias 'dcimages=docker rmi -f $(docker images --filter "dangling=true" -q)'
@@ -13,5 +13,22 @@ alias 'pico=nano'
 alias 'pbcopy=xsel --clipboard --input'
 alias 'pbpaste=xsel --clipboard --output'
 
-alias 'stop=sudo systemctl stop'
-alias 'start=sudo systemctl start'
+stop() {
+  sudo systemctl stop "$1"
+}
+
+start() { 
+  sudo systemctl start "$1"
+}
+
+restart() { 
+  sudo systemctl restart "$1"
+}
+
+status() { 
+  sudo systemctl status "$1"
+}
+
+savecert() {
+  openssl s_client -showcerts -connect "$1" </dev/null 2>/dev/null|openssl x509 -outform PEM >"$2"
+}
