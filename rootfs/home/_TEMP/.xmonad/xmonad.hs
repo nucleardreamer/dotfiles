@@ -58,12 +58,7 @@ myManageHook = composeAll
 
 myStartupHook = do
   setDefaultCursor xC_left_ptr
-  spawn "xrdb $HOME/.Xresources"
-  spawn "xsetroot -solid \"#343C4B\""
-  spawn "xrandr -s 2048x1152"
-  spawn "xscreensaver -nosplash"
-  spawn "unclutter -idle 2"
-  spawn "xmobar $HOME/.xmonad/mobar.conf"
+  -- spawn "xrdb $HOME/.Xresources"
   return ()
 
 -- to self: remember defaultConfig is being depricated
@@ -84,10 +79,10 @@ myConfig = ewmh defaultConfig
        `additionalKeys`  -- see /usr/include/X11/keysymdef.h
        [
          ((myModMask, xK_grave), toggleWS)
-         --take a screenshot of entire display 
-         , ((myModMask , xK_Print ), spawn "scrot $HOME/last_screenshot.png -d 1")
-         --take a screenshot of focused window 
-         , ((myModMask .|. controlMask, xK_Print ), spawn "scrot $HOME/last_screenshot.png -d 1-u")
+         --take a screenshot of entire display, save and put in clipboard
+         , ((myModMask , xK_Print ), spawn "scrot $HOME/last_screenshot.png -d 1 && xclip -selection c -t image/png $HOME/last_screenshot.png")
+         --take a screenshot of focused window, save and put in clipboard
+         , ((myModMask .|. shiftMask, xK_Print ), spawn "scrot $HOME/last_screenshot.png -d 1 -u && xclip -selection c -t image/png $HOME/last_screenshot.png")
        ]
 
 main = xmonad myConfig
