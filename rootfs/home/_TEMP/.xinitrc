@@ -18,6 +18,6 @@ volnoti &
 xrdb $HOME/.Xresources &
 xsetroot -solid "#343C4B" &
 xscreensaver -nosplash &
-xmobar $HOME/.xmonad/mobar.conf &
+~/bin/i3run &
 
 exec xmonad

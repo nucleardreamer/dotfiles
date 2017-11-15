@@ -1,0 +1,3 @@
+#!/bin/bash -e
+
+exec i3status | /usr/bin/xmobar $HOME/.xmonad/mobar.conf

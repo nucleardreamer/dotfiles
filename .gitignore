@@ -3,6 +3,6 @@ Desktop/
 .idea
 .xsession-errors
 .cache/
-.config/
 .local/
 git/
+*.wants
