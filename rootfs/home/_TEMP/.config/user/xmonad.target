@@ -1,0 +1,4 @@
+[Unit]
+Description=xmonad
+After=graphical.target
+Wants=graphical.target xorg.target

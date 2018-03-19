@@ -1,0 +1,12 @@
+[Unit]
+Description=Screensaver
+Documentation=man:xscreensaver man:xscreensaver-command man:xscreensaver-demo
+After=graphical.target xmonad.target
+
+[Service]
+ExecStartPre=/usr/bin/xscreensaver-command -exit
+ExecStart=/usr/bin/xscreensaver -nosplash
+ExecStop=/usr/bin/xscreensaver-command -exit
+
+[Install]
+WantedBy=xmonad.target default.target

@@ -5,7 +5,7 @@
 
 ! black
 *.color0:       #282a2e
-*.color8:       #373b41
+*.color8:       #4f555d
 
 ! red
 *.color1:       #a54242
@@ -20,8 +20,8 @@
 *.color11:      #f0c674
 
 ! blue
-*.color4:       #5f819d
-*.color12:      #81a2be
+*.color4:       #3c5162
+*.color12:      #586f82
 
 ! magenta
 *.color5:       #85678f
@@ -33,7 +33,7 @@
 
 ! white
 *.color7:       #707880
-*.color15:      #c5c8c6
+*.color15:      #989a99
 
 xscreensaver.mode: random
 xscreensaver.lock: false
