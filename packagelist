@@ -5,6 +5,7 @@ bluez
 bluez-firmware
 bluez-utils
 cmst
+clipmenu
 connman
 dmenu
 docker
