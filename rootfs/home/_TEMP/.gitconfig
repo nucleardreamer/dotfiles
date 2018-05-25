@@ -8,4 +8,4 @@
 [core]
 	editor = '/usr/bin/nano' -n -w
 [alias]
-        remove-tags = "!f() { git tag -l ${1} | xargs -I % echo \"git tag -d % && git push --delete origin %\" | sh; }; f"
+        remove-tags = "!f() { if [ $# -eq 0 ]; then echo \"Don't delete all git tags, enter a search\"; exit 1; fi; git tag -l ${1} | xargs -I % echo \"git tag -d % && git push --delete origin %\" | sh; }; f"
