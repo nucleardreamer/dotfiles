@@ -5,3 +5,7 @@
 	default = matching
 [github]
 	user = nucleardreamer
+[core]
+	editor = '/usr/bin/nano' -n -w
+[alias]
+        remove-tags = "!f() { git tag -l ${1} | xargs -I % echo \"git tag -d % && git push --delete origin %\" | sh; }; f"
